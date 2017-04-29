@@ -5,7 +5,7 @@ import zbarlight
 import cv2
 import numpy as np
 
-img = cv2.imread('result2.png')                                                           # your image to be read ,IMREAD_COLOR =  or 1,0..
+img = cv2.imread('test.png')                                                           # your image to be read ,IMREAD_COLOR =  or 1,0..
 
 grayscaled = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) 
 ret,thresh = cv2.threshold(img,127,255,cv2.THRESH_BINARY)                                 # convert to grayscale(binary image) 
@@ -35,22 +35,22 @@ src_points = np.float32([[, ],[, ],[, ]])                                       
 dst_points = np.float32([[19, 217],[17, 280],[81, 281]])
 affine_matrix = cv2.getAffineTransform(src_points, dst_points)
 img_output = cv2.warpAffine(thresh, affine_matrix, (cols,rows))
-cv2.imwrite('transform.png', img_output)
+cv2.imwrite('image.png', img_output)
 
 pts1 = np.float32([[,],[,],[,]])                                                                       # perspective trasnform of image to return a better percspective of image !more like focus
 pts2 = np.float32([[0,0],[400,0],[0,400],[400,400]])
 M = cv2.getPerspectiveTransform(pts1,pts2)
 dst = cv2.warpPerspective(img_output,M,(300,300))
-cv2.imwrite('ptransform.png', dst)
+cv2.imwrite('image.png', dst)
 
 
-imag = cv2.imread('transform.png')
+imag = cv2.imread('image.png')
 kernel = np.ones((5, 5), np.uint8)
 opening=cv2.morphologyEx(imag, cv2.MORPH_OPEN, kernel)                                       # remove stuff from background (false positives)
 processed=cv2.morphologyEx(imag, cv2.MORPH_CLOSE, kernel)                                    # remove false negatives !morphological transforms
-cv2.imwrite('processed.png', processed)
+cv2.imwrite('image.png', processed)
 
-img = 'processed.png'
+img = 'image.png'
 image = cv2.imread(img)
                                                                                             # flip/flop , translational , rotational transforms for alignment 
 horizontal_img = cv2.flip(image, 0)                                                         # and better detection of qr code 
