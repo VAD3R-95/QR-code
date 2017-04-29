@@ -24,15 +24,15 @@ Read more about qr code : [Qrcode](https://en.wikipedia.org/wiki/QR_code)
 
 **Following are the steps**
  
- 1. Raw messed up image. *raw.png*
+ 1. Raw messed up image.   (*raw.png*)
  
- 2. The drawings are done with PIL draw function.*email.png*
+ 2. The drawings are done with PIL draw function.   (*email.png*)
  
- 3. The image is converted to grayscale (binary) image first for better processing. *grayscaled.png*
+ 3. The image is converted to grayscale (binary) image first for better processing. (*grayscaled.png*)
  
- 4. Performing geometric transformations on the image. *processed.png*, *edge.png*, *contour.png*
+ 4. Performing geometric transformations on the image. (*processed.png*), (*edge.png*), (*contour.png*)
  
- 5. Resizing image if needed *email.png*
+ 5. Resizing image if needed  (*force.png*)
  
  6. Note : thresholding , edging , contour detection , transformations will differ for different images. These are for refernce  and the output will chnange upon using the script. It is basically hit and trial for transformations after these methods.
  
